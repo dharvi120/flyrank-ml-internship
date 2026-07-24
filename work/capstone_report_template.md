@@ -12,7 +12,7 @@
 
 What decision does this support? Name the unit of analysis (page, client, day…), the output
 (score, rank, cluster, report), the action a human takes from it, and the cost of a wrong
-call. Why does data/ML help here at all?
+call. Why does data/ML help here at all.
 
 ## 2. Data safety
 
