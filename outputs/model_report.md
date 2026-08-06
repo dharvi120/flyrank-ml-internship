@@ -13,53 +13,54 @@ The model ranks existing content for refresh review. It does not use titles, URL
 
 ## Model Comparison
 
-Best model: `random_forest` selected by `precision_at_50`.
+Best model: `xgboost_advanced` selected by `precision_at_50`.
 
 | Model | ROC AUC | Avg precision | Precision@50 | Recall | F1 |
 |---|---:|---:|---:|---:|---:|
-| decision_tree | 0.742 | 0.575 | 0.540 | 0.716 | 0.634 |
+| decision_tree | 0.742 | 0.575 | 0.620 | 0.716 | 0.634 |
 | logistic_regression | 0.700 | 0.522 | 0.400 | 0.567 | 0.566 |
-| random_forest | 0.750 | 0.618 | 0.740 | 0.744 | 0.640 |
+| random_forest | 0.747 | 0.610 | 0.680 | 0.741 | 0.638 |
+| xgboost_advanced | 0.778 | 0.692 | 0.920 | 0.950 | 0.628 |
 | baseline_rules | 0.627 | 0.468 | 0.240 | - | - |
 
 ## Final Queue
 
-- High-confidence items: 3,605
-- Medium-confidence items: 11,395
+- High-confidence items: 4,331
+- Medium-confidence items: 10,669
 - Low-confidence items: 15,000
-- `monitor` items: 13,093
-- `refresh` items: 8,178
-- `refresh_and_review_ctr` items: 6,657
-- `refresh_and_review_engagement` items: 1,990
+- `refresh` items: 13,226
+- `refresh_and_review_ctr` items: 9,145
+- `monitor` items: 4,862
+- `refresh_and_review_engagement` items: 2,685
 - `expand_and_refresh` items: 82
 
 ## Top Features
 
-- `days_with_impressions`: 0.1578
-- `log_impressions_90d`: 0.1282
-- `avg_position`: 0.1090
-- `content_age_days`: 0.0955
-- `char_count`: 0.0426
-- `word_count`: 0.0397
-- `log_clicks_90d`: 0.0346
-- `ctr`: 0.0330
-- `scroll_rate`: 0.0311
-- `days_with_sessions`: 0.0280
+- `age_tier_365+`: 0.1608
+- `days_with_impressions`: 0.0691
+- `impression_tier_low`: 0.0479
+- `position_tier_top_3`: 0.0454
+- `position_tier_deep`: 0.0272
+- `avg_position`: 0.0257
+- `content_age_days`: 0.0240
+- `content_type_comparison article`: 0.0234
+- `word_count_tier_1000-2000`: 0.0232
+- `log_impressions_90d`: 0.0206
 
 ## Top 10 Queue Preview
 
 | Rank | Score | Model probability | Action | Reasons | Impressions | Sessions | Trend |
 |---:|---:|---:|---|---|---:|---:|---|
-| 1 | 81.6 | 0.782 | refresh_and_review_ctr | declining_with_demand, low_ctr_visible_page, low_engagement_visible_page, model_decline_risk, visible_model_opportunity, ctr_review_candidate, engagement_review_candidate | 12834 | 66 | down |
-| 2 | 81.4 | 0.788 | refresh_and_review_ctr | declining_with_demand, low_ctr_visible_page, model_decline_risk, visible_model_opportunity, ctr_review_candidate | 8064 | 23 | down |
-| 3 | 81.4 | 0.847 | refresh_and_review_ctr | declining_with_demand, low_ctr_visible_page, model_decline_risk, visible_model_opportunity, ctr_review_candidate | 2498 | 9 | down |
-| 4 | 81.0 | 0.774 | refresh_and_review_ctr | declining_with_demand, low_ctr_visible_page, model_decline_risk, visible_model_opportunity, ctr_review_candidate | 13790 | 27 | down |
-| 5 | 80.9 | 0.815 | refresh_and_review_ctr | declining_with_demand, low_ctr_visible_page, model_decline_risk, visible_model_opportunity, ctr_review_candidate | 3393 | 5 | down |
-| 6 | 80.8 | 0.796 | refresh_and_review_ctr | declining_with_demand, low_ctr_visible_page, model_decline_risk, visible_model_opportunity, ctr_review_candidate | 5811 | 14 | down |
-| 7 | 80.6 | 0.846 | refresh_and_review_ctr | declining_with_demand, low_ctr_visible_page, model_decline_risk, visible_model_opportunity, ctr_review_candidate | 1622 | 20 | down |
-| 8 | 80.4 | 0.835 | refresh_and_review_ctr | declining_with_demand, low_ctr_visible_page, model_decline_risk, visible_model_opportunity, ctr_review_candidate | 2621 | 10 | down |
-| 9 | 80.4 | 0.843 | refresh_and_review_ctr | declining_with_demand, low_ctr_visible_page, model_decline_risk, visible_model_opportunity, ctr_review_candidate | 1597 | 5 | down |
-| 10 | 80.3 | 0.844 | refresh | declining_with_demand, model_decline_risk, visible_model_opportunity | 3867 | 5 | down |
+| 1 | 96.8 | 0.969 | refresh_and_review_ctr | declining_with_demand, low_ctr_visible_page, low_engagement_visible_page, model_decline_risk, visible_model_opportunity, ctr_review_candidate, engagement_review_candidate | 24260 | 44 | down |
+| 2 | 96.7 | 0.983 | refresh_and_review_engagement | declining_with_demand, low_engagement_visible_page, model_decline_risk, visible_model_opportunity, engagement_review_candidate | 26287 | 685 | down |
+| 3 | 96.5 | 0.969 | refresh_and_review_ctr | declining_with_demand, low_ctr_visible_page, model_decline_risk, visible_model_opportunity, ctr_review_candidate | 34100 | 18 | down |
+| 4 | 96.5 | 0.979 | refresh_and_review_engagement | declining_with_demand, low_engagement_visible_page, model_decline_risk, visible_model_opportunity, engagement_review_candidate | 12029 | 119 | down |
+| 5 | 96.3 | 0.963 | refresh_and_review_ctr | declining_with_demand, low_ctr_visible_page, low_engagement_visible_page, model_decline_risk, visible_model_opportunity, ctr_review_candidate, engagement_review_candidate | 43650 | 69 | down |
+| 6 | 95.9 | 0.977 | refresh_and_review_engagement | declining_with_demand, low_engagement_visible_page, model_decline_risk, visible_model_opportunity, engagement_review_candidate | 9594 | 89 | down |
+| 7 | 95.7 | 0.976 | refresh_and_review_ctr | declining_with_demand, page_one_decay_risk, low_ctr_visible_page, model_decline_risk, visible_model_opportunity, ctr_review_candidate | 9848 | 8 | down |
+| 8 | 95.6 | 0.958 | refresh_and_review_ctr | declining_with_demand, low_ctr_visible_page, low_engagement_visible_page, model_decline_risk, visible_model_opportunity, ctr_review_candidate, engagement_review_candidate | 32038 | 72 | down |
+| 9 | 95.5 | 0.980 | refresh_and_review_ctr | declining_with_demand, low_ctr_visible_page, low_engagement_visible_page, model_decline_risk, visible_model_opportunity, ctr_review_candidate, engagement_review_candidate | 12834 | 66 | down |
+| 10 | 95.5 | 0.969 | refresh_and_review_ctr | declining_with_demand, page_one_decay_risk, low_ctr_visible_page, model_decline_risk, visible_model_opportunity, ctr_review_candidate | 12331 | 8 | down |
 
 ## Generated Files
 
