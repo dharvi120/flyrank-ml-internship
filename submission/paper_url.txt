@@ -1,1 +1,1 @@
-https://dharvi120.github.io/flyrank-ml-internship/
+https://github.com/dharvi120/flyrank-ml-internship/blob/main/work/notebooks/capstone.ipynb
